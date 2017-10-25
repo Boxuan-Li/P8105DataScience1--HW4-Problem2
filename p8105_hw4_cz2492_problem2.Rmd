@@ -24,6 +24,6 @@ gdp = read_csv("GDP.csv") %>%
   mutate(date = as.POSIXct(date)) %>%
   mutate(date = lubridate::floor_date(date, "month"))
 
-left_join(pols_month, gdp, by = "date")
+gdp_month = left_join(pols_month, gdp, by = "date")
 ```
 

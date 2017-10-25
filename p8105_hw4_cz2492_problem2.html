@@ -151,21 +151,7 @@ $(document).ready(function () {
 ##   DATE = col_date(format = &quot;&quot;),
 ##   VALUE = col_character()
 ## )</code></pre>
-<pre class="r"><code>left_join(pols_month, gdp, by = &quot;date&quot;)</code></pre>
-<pre><code>## # A tibble: 822 x 10
-##          date prez_gop gov_gop sen_gop rep_gop prez_dem gov_dem sen_dem
-##        &lt;dttm&gt;    &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;    &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
-##  1 1947-01-01        0      23      51     253        1      23      45
-##  2 1947-02-01        0      23      51     253        1      23      45
-##  3 1947-03-01        0      23      51     253        1      23      45
-##  4 1947-04-01        0      23      51     253        1      23      45
-##  5 1947-05-01        0      23      51     253        1      23      45
-##  6 1947-06-01        0      23      51     253        1      23      45
-##  7 1947-07-01        0      23      51     253        1      23      45
-##  8 1947-08-01        0      23      51     253        1      23      45
-##  9 1947-09-01        0      23      51     253        1      23      45
-## 10 1947-10-01        0      23      51     253        1      23      45
-## # ... with 812 more rows, and 2 more variables: rep_dem &lt;int&gt;, value &lt;chr&gt;</code></pre>
+<pre class="r"><code>gdp_month = left_join(pols_month, gdp, by = &quot;date&quot;)</code></pre>
 </div>
 
 
