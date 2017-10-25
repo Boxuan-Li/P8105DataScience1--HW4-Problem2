@@ -27,3 +27,19 @@ gdp = read_csv("GDP.csv") %>%
 gdp_month = left_join(pols_month, gdp, by = "date")
 ```
 
+# Make the plot showing the change of GDP over time.
+```{r}
+gdp_month %>%
+  mutate(., prez_gop = replace(prez_gop, prez_gop == 1 | prez_gop ==2, "Republican"),
+            prez_gop = replace(prez_gop, prez_gop == 0, "Democrat")) %>%
+  select(., date, president = prez_gop, value) %>%
+  filter(., !is.na(value) & !value == ".") %>%
+  mutate(., value = as.numeric(value)) %>%
+  ggplot(., aes(x = date, y = value, color = president)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(se=F) +
+  labs(title = "Plot of GDP Values over Time",
+       x = "Time",
+       y = "GDP") +
+  theme_bw()
+```
