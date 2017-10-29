@@ -2,10 +2,19 @@
 title: "p8105_hw4_cz2492_problem2"
 author: "Cenai Zhang"
 date: "10/25/2017"
-output: html_document
+output: 
+  html_document:
+  code_folding: hide
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=F}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.width = 8,
+  fig.asp = .6,
+  out.width = "90%"
+)
+
 library(tidyverse)
 library(haven)
 library(ggridges)
@@ -13,7 +22,7 @@ library(janitor)
 ```
 
 # Read and clean dataset
-```{r}
+```{r read_data, message=FALSE}
 pols_month = read_csv("pols-month.csv") %>% 
   mutate(mon = as.POSIXct(mon)) %>% 
   mutate(mon = lubridate::floor_date(mon, "month")) %>% 
@@ -28,7 +37,7 @@ gdp_month = left_join(pols_month, gdp, by = "date")
 ```
 
 # Make the plot showing the change of GDP over time.
-```{r}
+```{r GDP_Plot, message=FALSE}
 gdp_month %>%
   mutate(., prez_gop = replace(prez_gop, prez_gop == 1 | prez_gop ==2, "Republican"),
             prez_gop = replace(prez_gop, prez_gop == 0, "Democrat")) %>%
@@ -43,3 +52,5 @@ gdp_month %>%
        y = "GDP") +
   theme_bw()
 ```
+
+__Through the scatterplot, we can find that two parties, i.e. Democrat and Republican, took turns to be in power from 1947 to 2015. It seems that Republican held the power longer than Democrat. However, in terms of GDP, Democrat might have done better than Republican in econemy since GDP values when Democrat was in power look higher than those when Republican was in power.__
